@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rusted Zip</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <h1>Rusted Zip</h1>
+  <p class="subtitle">Online Data Compression Using Huffman Encoding in Rust via WebAssembly</p>
+
+  <div id="app">
+    <div class="boxes">
+
+      <section class="box" id="compress-box">
+        <h2>Compress</h2>
+        <div class="dropzone" id="compress-dropzone">
+          <input type="file" id="compress-file"   hidden />
+          <input type="file" id="compress-folder" hidden webkitdirectory />
+          Click to select a file, or drag and drop
+        </div>
+        <p class="filename" id="compress-filename"></p>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="compress-pick-file">File</button>
+          <button class="btn btn-secondary" id="compress-pick-folder">Folder</button>
+        </div>
+        <button class="btn btn-primary" id="compress-run" disabled>Compress</button>
+        <p class="status" id="compress-status">Select a file or folder to begin</p>
+        <div id="compress-output"></div>
+      </section>
+
+      <section class="box" id="decompress-box">
+        <h2>Decompress</h2>
+        <div class="dropzone" id="decompress-dropzone">
+          <input type="file" id="decompress-file" hidden accept=".huff" />
+          Click to select a .huff file, or drag and drop
+        </div>
+        <p class="filename" id="decompress-filename"></p>
+        <button class="btn btn-primary" id="decompress-run" disabled>Decompress</button>
+        <p class="status" id="decompress-status">Select a .huff file to begin</p>
+        <div id="decompress-output"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
