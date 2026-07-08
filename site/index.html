@@ -21,7 +21,7 @@
           Rusted <span class="text-cobalt-primary">Zip</span>
         </a>
         <div class="flex items-center gap-xl">
-          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#reviews">About</a>
+          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#team">About</a>
           <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#benchmarks">Benchmarks</a>
           <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#footer">Resources</a>
         </div>
@@ -92,7 +92,7 @@
         <div class="content-card p-lg flex flex-col gap-lg" id="decompress-box">
           <div class="flex items-center justify-between">
             <h2 class="font-headline-md text-navy-deep">Decompress</h2>
-            <span class="material-symbols-outlined text-cobalt-primary">unarchive</span>
+            <span class="material-symbols-outlined text-cobalt-primary">expand</span>
           </div>
 
           <!-- Hidden file input -->
@@ -149,43 +149,54 @@
       </div>
     </section>
 
-    <!-- ─── Peer Reviews ─── -->
-    <section class="py-xxl max-w-7xl mx-auto px-gutter" id="reviews">
-      <h2 class="font-headline-md text-navy-deep mb-xl text-center">Peer Reviews</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-        <!-- Review 1 -->
-        <div class="content-card p-lg border-l-4 border-l-cobalt-primary">
-          <p class="italic text-on-surface-variant mb-md font-body-md">"The compression ratio for text files is incredible. Seeing Rust handle this in-browser is a game changer for web tools."</p>
-          <div class="flex items-center gap-sm">
-            <div class="w-8 h-8 rounded-full bg-surface-container-high"></div>
-            <div>
-              <p class="font-button-text text-sm text-navy-deep">Alex Chen</p>
-              <p class="text-xs text-outline">CS Graduate Student</p>
-            </div>
-          </div>
+    <!-- ─── Team Section ─── -->
+      <section class="py-xxl max-w-7xl mx-auto px-gutter" id="team">
+      <h2 class="font-headline-lg text-headline-lg mb-xl text-center text-navy-deep">
+        Team Behind <span class="text-rust-accent">Rusted</span> Zip
+      </h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+
+        <!-- Ahsan -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Ahsan Ali Shaikh</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#FAECE7] text-[#993C1D]">Branding & Design</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#D85A30] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+            Shaped the visual identity logo, color system, and the entire UI look and feel of Rusted Zip.
+          </p>
         </div>
-        <!-- Review 2 -->
-        <div class="content-card p-lg border-l-4 border-l-cobalt-primary">
-          <p class="italic text-on-surface-variant mb-md font-body-md">"Fast, clean, and no nonsense. This is how utilities on the web should be built. The Huffman implementation is rock solid."</p>
-          <div class="flex items-center gap-sm">
-            <div class="w-8 h-8 rounded-full bg-surface-container-high"></div>
-            <div>
-              <p class="font-button-text text-sm text-navy-deep">Sarah Jenkins</p>
-              <p class="text-xs text-outline">Open Source Contributor</p>
-            </div>
-          </div>
+
+        <!-- Maaz -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Maaz Ahmed</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#E6F1FB] text-[#185FA5]">Lead Developer</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#378ADD] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+            Built the Rust compression engine and the TypeScript scaffolding that ties the whole system together.
+          </p>
         </div>
-        <!-- Review 3 -->
-        <div class="content-card p-lg border-l-4 border-l-cobalt-primary">
-          <p class="italic text-on-surface-variant mb-md font-body-md">"Finally a tool that doesn't track my uploads. Perfect for quick dev tasks when I need to bundle local assets."</p>
-          <div class="flex items-center gap-sm">
-            <div class="w-8 h-8 rounded-full bg-surface-container-high"></div>
-            <div>
-              <p class="font-button-text text-sm text-navy-deep">Marcus Thorne</p>
-              <p class="text-xs text-outline">Senior Developer</p>
-            </div>
-          </div>
+
+        <!-- Taha -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Taha Hassan</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#E1F5EE] text-[#0F6E56]">Systems Integrator</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#1D9E75] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+           Brought the interface to life with TypeScript and Tailwind, wired to the Rust backend secure and seamless.
+          </p>
         </div>
+
+        <!-- Ali -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Ali Raza</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#FAEEDA] text-[#854F0B]">QA & Testing</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#BA7517] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+            Stress-tested across file types and edge cases nothing ships until Ali signs off on it.
+          </p>
+        </div>
+
       </div>
     </section>
 

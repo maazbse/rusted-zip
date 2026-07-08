@@ -80,17 +80,17 @@ function sections() {
   });
 
   // Peer Reviews (3rd section)
-  const reviews = document.querySelectorAll("#reviews");
+  const team = document.querySelectorAll("#team");
 
-  if (reviews.length) {
-    gsap.from(reviews, {
+  if (team.length) {
+    gsap.from(team, {
       y: 40,
       opacity: 0,
       stagger: 0.15,
       duration: 0.7,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: reviews[0],
+        trigger: team[0],
         start: "top 85%",
         once: true,
       },
