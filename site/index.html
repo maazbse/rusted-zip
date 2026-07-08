@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rusted Zip</title>
   <meta name="description" content="High-performance data compression in the browser, engineered with Rust and WebAssembly using Huffman Encoding." />
+  <link rel="icon" type="image/svg+xml" href="/rusted-zip/RustedZipOrangeFavicon.svg" />
   <link rel="stylesheet" href="/src/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
@@ -15,18 +16,30 @@
   <div id="app">
 
     <!-- ─── TopNavBar ─── -->
-    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-xl border-b border-surface-container-high z-50 transition-all duration-100 ease-in-out" id="navbar">
-      <div class="flex justify-between items-center max-w-7xl mx-auto px-gutter h-16">
-        <a class="font-display text-navy-deep text-headline-md tracking-tight" href="">
-          Rusted <span class="text-cobalt-primary">Zip</span>
-        </a>
-        <div class="flex items-center gap-xl">
-          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#team">About</a>
-          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#benchmarks">Benchmarks</a>
-          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#footer">Resources</a>
-        </div>
-      </div>
-    </nav>
+        <nav class="fixed top-0 w-full bg-white/90 dark:bg-navy-deep/90 backdrop-blur-xl border-b border-surface-container-high dark:border-white/10 z-50 transition-all duration-100 ease-in-out" id="navbar">
+          <div class="flex justify-between items-center max-w-7xl mx-auto px-gutter h-16">
+            <a class="font-display text-navy-deep dark:text-white text-headline-md tracking-tight" href="">
+              Rusted <span class="text-cobalt-primary">Zip</span>
+            </a>
+            <div class="flex items-center gap-xl">
+              <a class="text-on-surface-variant dark:text-white/60 hover:text-navy-deep dark:hover:text-white transition-colors" href="#team">About</a>
+              <a class="text-on-surface-variant dark:text-white/60 hover:text-navy-deep dark:hover:text-white transition-colors" href="#benchmarks">Benchmarks</a>
+              <a class="text-on-surface-variant dark:text-white/60 hover:text-navy-deep dark:hover:text-white transition-colors" href="#footer">Resources</a>
+
+              <!-- Dark Mode Toggle -->
+              <button
+                id="theme-toggle"
+                aria-label="Toggle dark mode"
+                class="relative w-9 h-9 flex items-center justify-center rounded-lg border border-outline-variant dark:border-white/20 bg-surface-container-low dark:bg-white/10 hover:bg-surface-container-high dark:hover:bg-white/20 transition-all duration-200"
+              >
+                <!-- Sun icon (shown in dark mode) -->
+                <span class="material-symbols-outlined text-[18px] text-navy-deep dark:text-white hidden dark:block" style="font-variation-settings: 'wght' 300">light_mode</span>
+                <!-- Moon icon (shown in light mode) -->
+                <span class="material-symbols-outlined text-[18px] text-navy-deep dark:text-white block dark:hidden" style="font-variation-settings: 'wght' 300">dark_mode</span>
+              </button>
+            </div>
+          </div>
+        </nav>
 
     <!-- ─── Hero Section ─── -->
     <header class="relative pt-40 pb-xxl overflow-hidden bg-ice-tint" id="hero">
