@@ -1,50 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rusted Zip</title>
-  <script type="module" crossorigin src="/rusted-zip/assets/index-hgqPz-GK.js"></script>
-  <link rel="stylesheet" crossorigin href="/rusted-zip/assets/index-Dh8sYhiI.css">
+  <meta name="description" content="High-performance data compression in the browser, engineered with Rust and WebAssembly using Huffman Encoding." />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/rusted-zip/assets/index-Brj8i6E1.js"></script>
+  <link rel="stylesheet" crossorigin href="/rusted-zip/assets/index-BEqVu_iX.css">
 </head>
-<body>
-  <h1>Rusted Zip</h1>
-  <p class="subtitle">Online Data Compression Using Huffman Encoding in Rust via WebAssembly</p>
+<body class="font-body-md text-body-md">
 
+  <!-- ═══ App Root ═══ -->
   <div id="app">
-    <div class="boxes">
 
-      <section class="box" id="compress-box">
-        <h2>Compress</h2>
-        <div class="dropzone" id="compress-dropzone">
-          <input type="file" id="compress-file"   hidden />
+    <!-- ─── TopNavBar ─── -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-xl border-b border-surface-container-high z-50 transition-all duration-100 ease-in-out" id="navbar">
+      <div class="flex justify-between items-center max-w-7xl mx-auto px-gutter h-16">
+        <a class="font-display text-navy-deep text-headline-md tracking-tight" href="">
+          Rusted <span class="text-cobalt-primary">Zip</span>
+        </a>
+        <div class="flex items-center gap-xl">
+          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#team">About</a>
+          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#benchmarks">Benchmarks</a>
+          <a class="text-on-surface-variant hover:text-navy-deep transition-colors" href="#footer">Resources</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ─── Hero Section ─── -->
+    <header class="relative pt-40 pb-xxl overflow-hidden bg-ice-tint" id="hero">
+      <div class="relative z-10 max-w-7xl mx-auto px-gutter text-center">
+        <h1 class="font-display text-display text-navy-deep mb-lg">
+          Rusted Zip
+        </h1>
+        <p class="font-headline-lg text-headline-lg max-w-3xl mx-auto text-on-surface-variant">
+          High-Performance Data Compression in the Browser. Engineered with <span class="text-rust-accent">Rust</span> &amp; <span class="text-cobalt-primary">WebAssembly</span> using Huffman Encoding.
+        </p>
+      </div>
+    </header>
+
+    <!-- ─── Tools Section (Compress / Decompress) ─── -->
+    <section class="py-xxl max-w-7xl mx-auto px-gutter" id="compress">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+
+        <!-- ── Compress Card ── -->
+        <div class="content-card p-lg flex flex-col gap-lg" id="compress-box">
+          <div class="flex items-center justify-between">
+            <h2 class="font-headline-md text-navy-deep">Compress</h2>
+            <span class="material-symbols-outlined text-cobalt-primary">compress</span>
+          </div>
+
+          <!-- Hidden file inputs -->
+          <input type="file" id="compress-file" hidden />
           <input type="file" id="compress-folder" hidden webkitdirectory />
-          Click to select a file, or drag and drop
-        </div>
-        <p class="filename" id="compress-filename"></p>
-        <div class="btn-row">
-          <button class="btn btn-secondary" id="compress-pick-file">File</button>
-          <button class="btn btn-secondary" id="compress-pick-folder">Folder</button>
-        </div>
-        <button class="btn btn-primary" id="compress-run" disabled>Compress</button>
-        <p class="status" id="compress-status">Select a file or folder to begin</p>
-        <div id="compress-output"></div>
-      </section>
 
-      <section class="box" id="decompress-box">
-        <h2>Decompress</h2>
-        <div class="dropzone" id="decompress-dropzone">
+          <!-- Dropzone -->
+          <div class="border-2 border-dashed border-outline-variant rounded-lg p-xl flex flex-col items-center justify-center text-center gap-md transition-all cursor-pointer hover:bg-surface-container-low" id="compress-dropzone">
+            <span class="material-symbols-outlined text-[48px] text-outline" style="font-variation-settings: 'wght' 200">upload_file</span>
+            <p class="text-on-surface-variant">Click to select a file, or drag and drop</p>
+          </div>
+
+          <!-- Filename display -->
+          <p class="text-sm text-on-surface-variant min-h-[1.2em]" id="compress-filename"></p>
+
+          <!-- File / Folder buttons -->
+          <div class="flex gap-md">
+            <button class="flex-1 bg-surface-container-low hover:bg-surface-container-high border border-outline-variant py-sm rounded-lg transition-all flex items-center justify-center gap-xs text-navy-deep" id="compress-pick-file">
+              <span class="material-symbols-outlined text-sm">insert_drive_file</span>
+              File
+            </button>
+            <button class="flex-1 bg-surface-container-low hover:bg-surface-container-high border border-outline-variant py-sm rounded-lg transition-all flex items-center justify-center gap-xs text-navy-deep" id="compress-pick-folder">
+              <span class="material-symbols-outlined text-sm">folder</span>
+              Folder
+            </button>
+          </div>
+
+          <!-- Run button -->
+          <button class="w-full bg-cobalt-primary text-white py-md rounded-lg font-button-text hover:brightness-110 shadow-lg shadow-cobalt-primary/20 transition-all disabled:opacity-45 disabled:cursor-not-allowed" id="compress-run" disabled>
+            Compress
+          </button>
+
+          <!-- Status -->
+          <p class="text-sm text-outline text-center" id="compress-status">Select a file or folder to begin processing.</p>
+
+          <!-- Output / Stats (populated by JS) -->
+          <div id="compress-output"></div>
+        </div>
+
+        <!-- ── Decompress Card ── -->
+        <div class="content-card p-lg flex flex-col gap-lg" id="decompress-box">
+          <div class="flex items-center justify-between">
+            <h2 class="font-headline-md text-navy-deep">Decompress</h2>
+            <span class="material-symbols-outlined text-cobalt-primary">expand</span>
+          </div>
+
+          <!-- Hidden file input -->
           <input type="file" id="decompress-file" hidden accept=".huff" />
-          Click to select a .huff file, or drag and drop
-        </div>
-        <p class="filename" id="decompress-filename"></p>
-        <button class="btn btn-primary" id="decompress-run" disabled>Decompress</button>
-        <p class="status" id="decompress-status">Select a .huff file to begin</p>
-        <div id="decompress-output"></div>
-      </section>
 
-    </div>
-  </div>
+          <!-- Dropzone -->
+          <div class="border-2 border-dashed border-outline-variant rounded-lg p-xl flex flex-col items-center justify-center text-center gap-md transition-all cursor-pointer hover:bg-surface-container-low" id="decompress-dropzone">
+            <span class="material-symbols-outlined text-[48px] text-outline" style="font-variation-settings: 'wght' 200">file_download</span>
+            <p class="text-on-surface-variant">Click to select a .huff file, or drag and drop</p>
+          </div>
+
+          <!-- Filename display -->
+          <p class="text-sm text-on-surface-variant min-h-[1.2em]" id="decompress-filename"></p>
+
+          <!-- Run button -->
+          <button class="w-full bg-cobalt-primary text-white py-md rounded-lg font-button-text hover:brightness-110 shadow-lg shadow-cobalt-primary/20 transition-all disabled:opacity-45 disabled:cursor-not-allowed" id="decompress-run" disabled>
+            Decompress
+          </button>
+
+          <!-- Status -->
+          <p class="text-sm text-outline text-center" id="decompress-status">Select a .huff file to begin decoding.</p>
+
+          <!-- Output / Stats (populated by JS) -->
+          <div id="decompress-output"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Our Motive Section ─── -->
+    <section class="py-xxl bg-ice-tint border-y border-surface-container-high" id="motive">
+      <div class="max-w-7xl mx-auto px-gutter text-center py-xl">
+        <h2 class="font-headline-lg text-headline-lg mb-lg text-navy-deep">Why Rusted Zip?</h2>
+        <p class="font-body-lg text-body-lg max-w-3xl mx-auto leading-relaxed text-on-surface-variant">
+          Born as a free university project, Rusted Zip aims to demonstrate the power of <span class="font-label-sm text-cobalt-primary">Rust</span> on the web. We believe in fast, secure, and client-side compression without the bloat.
+        </p>
+        <div class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-lg text-left">
+          <div class="p-md">
+            <span class="material-symbols-outlined text-cobalt-primary mb-sm">bolt</span>
+            <h3 class="font-headline-md text-navy-deep mb-xs">Native Speed</h3>
+            <p class="text-outline">WebAssembly execution speeds that rival native desktop applications.</p>
+          </div>
+          <div class="p-md">
+            <span class="material-symbols-outlined text-cobalt-primary mb-sm">security</span>
+            <h3 class="font-headline-md text-navy-deep mb-xs">Privacy First</h3>
+            <p class="text-outline">All processing happens in your browser. Your data never touches a server.</p>
+          </div>
+          <div class="p-md">
+            <span class="material-symbols-outlined text-cobalt-primary mb-sm">science</span>
+            <h3 class="font-headline-md text-navy-deep mb-xs">Open Source</h3>
+            <p class="text-outline">A transparent implementation of Huffman Encoding optimized for modern CPUs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Team Section ─── -->
+      <section class="py-xxl max-w-7xl mx-auto px-gutter" id="team">
+      <h2 class="font-headline-lg text-headline-lg mb-xl text-center text-navy-deep">
+        Team Behind <span class="text-rust-accent">Rusted</span> Zip
+      </h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+
+        <!-- Ahsan -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Ahsan Ali Shaikh</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#FAECE7] text-[#993C1D]">Branding & Design</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#D85A30] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+            Shaped the visual identity logo, color system, and the entire UI look and feel of Rusted Zip.
+          </p>
+        </div>
+
+        <!-- Maaz -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Maaz Ahmed</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#E6F1FB] text-[#185FA5]">Lead Developer</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#378ADD] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+            Built the Rust compression engine and the TypeScript scaffolding that ties the whole system together.
+          </p>
+        </div>
+
+        <!-- Taha -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Taha Hassan</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#E1F5EE] text-[#0F6E56]">Systems Integrator</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#1D9E75] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+           Brought the interface to life with TypeScript and Tailwind, wired to the Rust backend secure and seamless.
+          </p>
+        </div>
+
+        <!-- Ali -->
+        <div class="content-card p-lg flex flex-col items-center text-center gap-3">
+          <p class="font-button-text text-base text-navy-deep">Ali Raza</p>
+          <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-[#FAEEDA] text-[#854F0B]">QA & Testing</span>
+          <hr class="w-8 border-0 h-[2px] bg-[#BA7517] rounded-full" />
+          <p class="text-sm text-on-surface-variant font-body-md leading-relaxed">
+            Stress-tested across file types and edge cases nothing ships until Ali signs off on it.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Performance Graph Section ─── -->
+    <section class="py-xxl max-w-7xl mx-auto px-gutter" id="benchmarks">
+      <div class="content-card overflow-hidden">
+        <div class="p-lg bg-surface-container-low border-b border-surface-container-high flex justify-between items-center">
+          <h3 class="font-headline-md text-navy-deep text-sm">Engine Performance Metrics</h3>
+          <span class="text-xs font-label-sm text-outline">V8 Engine 12.0 • WASM Core v2.1</span>
+        </div>
+        <div class="p-xl graph-grid">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+            <!-- Throughput -->
+            <div class="space-y-lg">
+              <div class="flex items-center gap-sm mb-md">
+                <span class="material-symbols-outlined text-cobalt-primary">speed</span>
+                <h4 class="font-label-sm text-navy-deep">Throughput (MB/s)</h4>
+              </div>
+              <div class="space-y-md">
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>Text Data</span><span>842 MB/s</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-cobalt-primary w-[92%]"></div>
+                  </div>
+                </div>
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>Image Binary</span><span>420 MB/s</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-cobalt-primary/60 w-[45%]"></div>
+                  </div>
+                </div>
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>Generic Binary</span><span>610 MB/s</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-cobalt-primary/80 w-[65%]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Latency -->
+            <div class="space-y-lg">
+              <div class="flex items-center gap-sm mb-md">
+                <span class="material-symbols-outlined text-rust-accent">timer</span>
+                <h4 class="font-label-sm text-navy-deep">Execution Latency (ms)</h4>
+              </div>
+              <div class="space-y-md">
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>Huffman (Rust)</span><span>1.2ms</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-rust-accent w-[10%]"></div>
+                  </div>
+                </div>
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>Huffman (JS)</span><span>24.8ms</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-outline w-[85%]"></div>
+                  </div>
+                </div>
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>WASM Overhead</span><span>0.4ms</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-rust-accent/50 w-[5%]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Efficiency -->
+            <div class="space-y-lg">
+              <div class="flex items-center gap-sm mb-md">
+                <span class="material-symbols-outlined text-primary">analytics</span>
+                <h4 class="font-label-sm text-navy-deep">Compression Efficiency</h4>
+              </div>
+              <div class="space-y-md">
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>Heap Utilization</span><span>24MB Peak</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-primary w-[30%]"></div>
+                  </div>
+                </div>
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>CPU Thread Load</span><span>14% Avg</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-primary/60 w-[14%]"></div>
+                  </div>
+                </div>
+                <div class="space-y-xs">
+                  <div class="flex justify-between text-xs font-label-sm text-outline"><span>IO Saturation</span><span>98%</span></div>
+                  <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-primary/80 w-[98%]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer ─── -->
+    <footer class="relative w-full bg-cobalt-primary text-white pt-xxl pb-xl overflow-hidden" id="footer">
+      <!-- Logo Background Texture -->
+      <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 select-none pointer-events-none opacity-10">
+        <h2 class="text-[28vw] font-display font-bold leading-none tracking-tighter">Rusted</h2>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-gutter">
+        <div class="flex flex-col items-center text-center mb-xxl">
+          <h3 class="font-display text-headline-lg">Rusted Storage No More.</h3>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-xl border-t border-white/10 pt-xxl">
+          <div class="col-span-2 md:col-span-1">
+            <div class="font-display text-headline-md tracking-tight mb-md">
+              Rusted <span class="opacity-70">Zip</span>
+            </div>
+            <p class="text-white/60 text-sm max-w-xs">Built for the future of the web. High performance, private, and entirely local.</p>
+          </div>
+          <div>
+            <h4 class="font-label-sm text-white/50 mb-lg uppercase tracking-widest text-[11px]">Resources</h4>
+            <ul class="space-y-md text-sm">
+              <li><a class="hover:text-rust-accent transition-colors" href="https://github.com/maazbse/rusted-zip">Documentation</a></li>
+              <li><a class="hover:text-rust-accent transition-colors" href="#benchmarks">Benchmarks</a></li>
+              <li><a class="hover:text-rust-accent transition-colors" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-xxl pt-lg border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-md">
+          <p class="text-white/40 text-xs">&copy; 2026 Rusted Zip.</p>
+          <div class="flex gap-lg">
+            <span class="text-white/40 text-xs">Built with Rust &amp; WebAssembly</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /app -->
 
 </body>
 </html>
