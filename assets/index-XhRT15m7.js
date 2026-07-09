@@ -16,9 +16,9 @@
 				<button class="btn btn-secondary" id="decompress-download">
 					Download file
 				</button>
-			`,document.getElementById(`decompress-download`).addEventListener(`click`,()=>{s&&o&&yl(s,xl(o.name))}),Cl(i,`Done!`,`success`)}catch(e){Cl(i,`Error: ${e}`,`error`)}finally{r.disabled=!1}}})}async function Al(){let e=document.getElementById(`app`);try{await b(),e.dataset.ready=`true`,wl(),kl(),requestAnimationFrame(()=>{cc()})}catch(t){e.innerHTML=`
+			`,document.getElementById(`decompress-download`).addEventListener(`click`,()=>{s&&o&&yl(s,xl(o.name))}),Cl(i,`Done!`,`success`)}catch(e){Cl(i,`Error: ${e}`,`error`)}finally{r.disabled=!1}}})}var Al=document.getElementById(`theme-toggle`),jl=document.documentElement,Ml=localStorage.getItem(`theme`);(Ml===`dark`||!Ml&&window.matchMedia(`(prefers-color-scheme: dark)`).matches)&&jl.classList.add(`dark`),Al?.addEventListener(`click`,()=>{let e=jl.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)});async function Nl(){let e=document.getElementById(`app`);try{await b(),e.dataset.ready=`true`,wl(),kl(),requestAnimationFrame(()=>{cc()})}catch(t){e.innerHTML=`
 			<div class="init-error">
 				Failed to load WASM module: ${t}<br/>
 				Please refresh the page or check your browser supports WebAssembly.
 			</div>
-		`;return}document.querySelectorAll(`a[href^="#"]`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault();let n=e.getAttribute(`href`);if(!n)return;let r=document.querySelector(n);r&&r.scrollIntoView({behavior:`smooth`})})})}Al();
+		`;return}document.querySelectorAll(`a[href^="#"]`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault();let n=e.getAttribute(`href`);if(!n)return;let r=document.querySelector(n);r&&r.scrollIntoView({behavior:`smooth`})})})}Nl();
